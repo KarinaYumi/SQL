@@ -7,7 +7,7 @@ CREATE TABLE tbAluno(
 	,nomeAluno VARCHAR (90) 
 	,dataNascAluno SMALLDATETIME 
 	,rgAluno VARCHAR (15) 
-	,natuAluno VARCHAR (2) 
+	,naturalidadeAluno VARCHAR (20) 
 );
 
 CREATE TABLE tbCurso(
