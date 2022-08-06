@@ -1,4 +1,4 @@
-INSERT INTO tbAluno ( nomeAluno, dataNascAluno, rgAluno, natuAluno)
+INSERT INTO tbAluno ( nomeAluno, dataNascAluno, rgAluno, naturalidadeAluno)
 VALUES ('Paula Santos','2000-10-03','82.292.122-0','SP'),
 		('Maria da Gloria','1999-03-10','45.233.123-0','SP'),
 		('Perla Nogueira Silva','1998-04-04','23.533.211-9','SP'),
@@ -6,8 +6,8 @@ VALUES ('Paula Santos','2000-10-03','82.292.122-0','SP'),
 		('Mariana Barbosa Santos','2001-10-10','54.222.122-9','RJ')
 
 INSERT INTO tbCurso(nomeCurso,cargaHorariaCurso,valorCurso)
-VALUES 	('Inglês',2000, 356),
-		('Alemão',2000, 356)
+VALUES 	('InglÃªs',2000, 356),
+		('AlemÃ£o',2000, 356)
 
 INSERT INTO tbTurma(nomeTurma,codCurso,horarioTurma)
 VALUES 	('1|A', 1, '1900-01-01 12:00:00'),
