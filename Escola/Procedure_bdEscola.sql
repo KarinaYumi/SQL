@@ -115,7 +115,7 @@ CREATE PROCEDURE sp_InsereAlunoCpf
 ----------------------------------------------------------------------------------------------------------------------------------------------
 -- 7) Criar uma stored procedure que receba o nome do curso e o nome do aluno e matricule o mesmo no curso pretendido.
 
-	CREATE PROCEDURE spInsereAluno_Curso
+	CREATE PROCEDURE spInserirAlunoCurso
 	@nomeAluno VARCHAR(50)
 	,@nomeCurso VARCHAR(90)
 AS
@@ -124,8 +124,17 @@ AS
 
 		SET @codAluno = (SELECT codAluno FROM tbAluno WHERE nomeAluno like @nomeAluno)
 		SET @codTurma = (SELECT codTurma FROM tbTurma INNER JOIN tbCurso ON tbTurma.codCurso = tbCurso.codCurso WHERE nomeCurso like @nomeCurso)
+		IF EXISTS(SELECT codAluno FROM tbMatricula WHERE codAluno = @codAluno) BEGIN
 
-			INSERT tbMatricula(dataMatricula, codAluno, codTurma)
-			VALUES (GETDATE(), @codAluno, @codTurma)
-	
-	EXEC spInsereAluno_Curso 'Inglês', 'Karina'
+		PRINT('Aluno já cadastrado no sistema')
+
+		END ELSE 
+			BEGIN
+			IF EXISTS(SELECT nomeALuno FROM tbAluno WHERE nomeAluno like @nomeAluno)
+
+				INSERT tbMatricula(dataMatricula, codAluno, codTurma)
+				VALUES (GETDATE(), @codAluno, @codTurma)
+				PRINT('Aluno cadastrado com sucesso!')
+
+			END
+	EXEC spInserirAlunoCurso 'Inglês', 'Karina'
