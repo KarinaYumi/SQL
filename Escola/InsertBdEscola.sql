@@ -1,9 +1,11 @@
-INSERT INTO tbAluno ( nomeAluno, dataNascAluno, rgAluno, naturalidadeAluno)
-VALUES ('Paula Santos','2000-10-03','82.292.122-0','SP'),
-		('Maria da Gloria','1999-03-10','45.233.123-0','SP'),
-		('Perla Nogueira Silva','1998-04-04','23.533.211-9','SP'),
-		('Gilson Barros Sailva','1995-09-09','34.221.111-X','PE'),
-		('Mariana Barbosa Santos','2001-10-10','54.222.122-9','RJ')
+USE bdEscola
+
+INSERT INTO tbAluno ( nomeAluno, dataNascAluno, rgAluno, naturalidadeAluno, cpfAluno)
+VALUES ('Paula Santos','2000-10-03','82.292.122-0','SP', '123.456.789-20'),
+		('Maria da Gloria','1999-03-10','45.233.123-0','SP', '158.862.159-52'),
+		('Perla Nogueira Silva','1998-04-04','23.533.211-9','SP', '791.456.157-48'),
+		('Gilson Barros Sailva','1995-09-09','34.221.111-X','PE', '894.156.895-18'),
+		('Mariana Barbosa Santos','2001-10-10','54.222.122-9','RJ', '795.354.687-11')
 
 INSERT INTO tbCurso(nomeCurso,cargaHorariaCurso,valorCurso)
 VALUES 	('Inglês',2000, 356),
