@@ -34,10 +34,10 @@ CREATE PROCEDURE spInserirVeiculos
 	,@anoVeiculo INT
 	,@idMotorista INT
 
-AS
+	AS
 	IF EXISTS(SELECT placa FROM tbVeiculo WHERE placa = @placa)
 		BEGIN 
-			PRINT('Veículo já cadastrado no sistema!')
+		PRINT('Veículo já cadastrado no sistema!')
 	END ELSE
 		BEGIN
 
@@ -63,8 +63,8 @@ CREATE PROCEDURE spInserirMultas
 
 	AS
 		INSERT INTO tbMultas(dataMulta,horaMulta, pontosMulta, idVeiculo)
-			VALUES (@dataMulta, @horaMulta, @pontosMulta, @idVeiculo)
-			PRINT ('Multa cadastrada com sucesso!')
+		VALUES (@dataMulta, @horaMulta, @pontosMulta, @idVeiculo)
+		PRINT ('Multa cadastrada com sucesso!')
 
 	EXEC spInserirMultas '12-05-2022', '12-05-2022 12:52:01', 10, 2
 	EXEC spInserirMultas '14-01-2021', '14-01-2021 21:58:15', 21, 1
