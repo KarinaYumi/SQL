@@ -7,7 +7,8 @@ CREATE TABLE tbAluno(
 	,nomeAluno VARCHAR (90) 
 	,dataNascAluno SMALLDATETIME 
 	,rgAluno VARCHAR (15) 
-	,naturalidadeAluno VARCHAR (20) 
+	,naturalidadeAluno VARCHAR (20)
+	,cpfAluno VARCHAR(15)
 );
 
 CREATE TABLE tbCurso(
@@ -30,4 +31,3 @@ CREATE TABLE tbMatricula(
 	,codAluno INT FOREIGN KEY REFERENCES tbAluno(codAluno)
 	,codTurma INT FOREIGN KEY REFERENCES tbTurma(codTurma)
 );
-
