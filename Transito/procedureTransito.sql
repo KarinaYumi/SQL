@@ -51,10 +51,9 @@ CREATE PROCEDURE spInserirVeiculos
 
 	EXEC spInserirVeiculos 'Audi A4', 'SQL1258', 59874125, 2021, 1
 	EXEC spInserirVeiculos 'Dodge RAM 2500', 'GLQ3233', 526589, 2022, 2
-	EXEC spInserirVeiculos 'Civic', 'GDW1589', 456841, 219, 3
+	EXEC spInserirVeiculos 'Civic', 'GDW1589', 456841, 2019, 3
 
-
-SELECT*FROM tbVeiculo
+	SELECT*FROM tbVeiculo
 
 --PROCEDURE INSERIR MULTAS
 CREATE PROCEDURE spInserirMultas 
