@@ -76,18 +76,20 @@ SELECT*FROM tbVeiculo
 	SELECT*FROM tbMultas
 
 -- Criar uma stored procedure que ao ser colocada a placa do veículo apresente-se a quantidade de multas do veículo
-	CREATE PROCEDURE spMultasVeiculo
-	@placa VARCHAR(9)
+	CREATE PROCEDURE spQNTMultasVeiculo
+		@placa VARCHAR(9)
 	AS
 		IF EXISTS(SELECT placa FROM tbVeiculo WHERE placa = @placa) BEGIN
-		SELECT modeloVeiculo, placa, tbMultas.pontosmulta FROM tbVeiculo
-		INNER JOIN tbMultas ON tbVeiculo.idVeiculo = tbMultas.idVeiculo WHERE tbVeiculo.placa = @placa
+			SELECT placa, COUNT(tbMultas.idMulta) AS 'Quantidade de multas' FROM tbVeiculo
+			INNER JOIN tbMultas ON tbVeiculo.idVeiculo = tbMultas.idVeiculo
+			GROUP BY placa
 		END
-		ELSE BEGIN
-		PRINT('O veículo não tem multas registradas!') 
+			ELSE BEGIN
+			PRINT('O veículo não tem multas registradas!') 
 		END
 
-		EXEC spMultasVeiculo 'SQL1258'
+		EXEC spMultasVeiculo 'GLQ3233'
+
 
 -- 3-Criar uma procedure que receba o cpf do motorista e apresenta a sua pontuação acumulada
 
