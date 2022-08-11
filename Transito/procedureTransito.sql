@@ -1,3 +1,6 @@
+-- Criar 3 procedures para inserir 2 motoristas, 3 veículos e 5 multas.
+-- PROCEDURE INSERIR MOTORISTAS
+
 USE bdTransito
 
 CREATE PROCEDURE spInserirMotorista
@@ -25,7 +28,7 @@ CREATE PROCEDURE spInserirMotorista
 
 	SELECT*FROM tbMotorista
 
--------------------------------------------------------------------------------------------------------------
+--PROCEDURE INSERIR VEICULOS
 
 CREATE PROCEDURE spInserirVeiculos
 	@modeloVeiculo VARCHAR(40)
@@ -53,8 +56,7 @@ CREATE PROCEDURE spInserirVeiculos
 
 SELECT*FROM tbVeiculo
 
----------------------------------------------------------------------------------------------------------------
-
+--PROCEDURE INSERIR MULTAS
 CREATE PROCEDURE spInserirMultas 
 	@dataMulta SMALLDATETIME
 	,@horaMulta	SMALLDATETIME
@@ -73,3 +75,31 @@ CREATE PROCEDURE spInserirMultas
 	EXEC spInserirMultas '26-02-2021', '14-03-2022 21:52:51', 03, 2
 
 	SELECT*FROM tbMultas
+
+-- Criar uma stored procedure que ao ser colocada a placa do veículo apresente-se a quantidade de multas do veículo
+CREATE PROCEDURE spMultasVeiculo
+	@placa VARCHAR(9)
+	AS
+		IF EXISTS(SELECT placa FROM tbVeiculo WHERE placa = @placa) BEGIN
+			SELECT COUNT(idMulta) FROM tbMultas WHERE tbMultas.idVeiculo = tbVeiculo.idMotorista;
+		END 
+		ELSE BEGIN
+			PRINT('Não existem multas registradas no veículo')
+		END
+
+		EXEC spMultasVeiculo 'GLQ3233'
+
+
+
+-- 3-Criar uma procedure que receba o cpf do motorista e apresenta a sua pontuação acumulada
+CREATE PROCEDURE pontuacaoMotorista 
+	@cpfMotorista VARCHAR(15)
+	AS
+		IF EXISTS(SELECT cpfMotorista FROM tbMotorista WHERE cpfMotorista = @cpfMotorista) BEGIN
+			SELECT pontuacaoAcumulada AS 'Pontuação' FROM tbMotorista
+			WHERE cpfMotorista = @cpfMotorista
+		END
+		ELSE BEGIN
+			PRINT('O motorista não tem pontos acumulados!')
+		END
+	EXEC pontuacaoMotorista '123.456.789-90'
