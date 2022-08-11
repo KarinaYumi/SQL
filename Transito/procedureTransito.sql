@@ -3,7 +3,7 @@
 
 USE bdTransito
 
-CREATE PROCEDURE spInserirMotorista
+	CREATE PROCEDURE spInserirMotorista
 	@nomeMotorista VARCHAR(50)
 	,@dataNascimentoMotorista SMALLDATETIME
 	,@cpfMotorista VARCHAR(15)
@@ -30,7 +30,7 @@ CREATE PROCEDURE spInserirMotorista
 
 --PROCEDURE INSERIR VEICULOS
 
-CREATE PROCEDURE spInserirVeiculos
+	CREATE PROCEDURE spInserirVeiculos
 	@modeloVeiculo VARCHAR(40)
 	,@placa VARCHAR(9)
 	,@renavam INT
@@ -51,12 +51,12 @@ CREATE PROCEDURE spInserirVeiculos
 
 	EXEC spInserirVeiculos 'Audi A4', 'SQL1258', 59874125, 2021, 1
 	EXEC spInserirVeiculos 'Dodge RAM 2500', 'GLQ3233', 526589, 2022, 2
-	EXEC spInserirVeiculos 'Civic', 'GDW1589', 456841, 2019, 3
+	EXEC spInserirVeiculos 'CIVIC', 'AQW2011', 458692, 2022, 3
 
-	SELECT*FROM tbVeiculo
+SELECT*FROM tbVeiculo
 
 --PROCEDURE INSERIR MULTAS
-CREATE PROCEDURE spInserirMultas 
+	CREATE PROCEDURE spInserirMultas	
 	@dataMulta SMALLDATETIME
 	,@horaMulta	SMALLDATETIME
 	,@pontosMulta INT
@@ -76,22 +76,22 @@ CREATE PROCEDURE spInserirMultas
 	SELECT*FROM tbMultas
 
 -- Criar uma stored procedure que ao ser colocada a placa do veículo apresente-se a quantidade de multas do veículo
-CREATE PROCEDURE spMultasVeiculo
+	CREATE PROCEDURE spMultasVeiculo
 	@placa VARCHAR(9)
 	AS
 		IF EXISTS(SELECT placa FROM tbVeiculo WHERE placa = @placa) BEGIN
-			SELECT COUNT(idMulta) FROM tbMultas WHERE tbMultas.idVeiculo = tbVeiculo.idMotorista;
-		END 
+		SELECT modeloVeiculo, placa, tbMultas.pontosmulta FROM tbVeiculo
+		INNER JOIN tbMultas ON tbVeiculo.idVeiculo = tbMultas.idVeiculo WHERE tbVeiculo.placa = @placa
+		END
 		ELSE BEGIN
-			PRINT('Não existem multas registradas no veículo')
+		PRINT('O veículo não tem multas registradas!') 
 		END
 
-		EXEC spMultasVeiculo 'GLQ3233'
-
-
+		EXEC spMultasVeiculo 'SQL1258'
 
 -- 3-Criar uma procedure que receba o cpf do motorista e apresenta a sua pontuação acumulada
-CREATE PROCEDURE pontuacaoMotorista 
+
+	CREATE PROCEDURE pontuacaoMotorista 
 	@cpfMotorista VARCHAR(15)
 	AS
 		IF EXISTS(SELECT cpfMotorista FROM tbMotorista WHERE cpfMotorista = @cpfMotorista) BEGIN
@@ -101,4 +101,5 @@ CREATE PROCEDURE pontuacaoMotorista
 		ELSE BEGIN
 			PRINT('O motorista não tem pontos acumulados!')
 		END
+
 	EXEC pontuacaoMotorista '123.456.789-90'
