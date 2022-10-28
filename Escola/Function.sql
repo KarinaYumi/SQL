@@ -1,7 +1,7 @@
 --01
 CREATE FUNCTION fc_DiaSemana(@codMatricula INT)
-	  RETURNS varchar(30) AS
-	BEGIN
+	RETURNS varchar(30) AS
+BEGIN
   
 	DECLARE @DataMatricula DATE = (SELECT dataMatricula FROM tbMatricula WHERE codMatricula = @codMatricula)
 		DECLARE @DiadaSemana varchar(140)
@@ -48,7 +48,7 @@ CREATE FUNCTION fc_DiaSemana(@codMatricula INT)
     
  --02
  CREATE FUNCTION fc_ValidacargaHoraria(@idCurso INT)
-	  RETURNS VARCHAR(20) AS
+ 	RETURNS VARCHAR(20) AS
 BEGIN
 	
 	DECLARE @retorno VARCHAR(20)
